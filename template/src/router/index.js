@@ -1,15 +1,34 @@
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Hello from '@/components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Vue from 'vue'
+import Router from 'vue-router'
+import Header from '@/layouts/Header'
+import Footer from '@/layouts/Footer'
+import Main from '@/layouts/Main'
+import account from './account'
+import auth from './auth'
+import home from './home'
+import work from './work'
+import crm from './crm'
+import apps from './apps'
 
-Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  ]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      components: {
+        header: Header,
+        default: Main,
+        footer: Footer
+      },
+      children: [
+        home,
+        account,
+        work,
+        crm,
+        apps
+      ]
+    },
+    auth
+  ]
+})

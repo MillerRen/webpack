@@ -1,34 +1,28 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    {{#router}}
+    <router-view name="header"></router-view>
     <router-view></router-view>
-    {{else}}
-    <hello></hello>
-    {{/router}}
+    <router-view name="footer"></router-view>
+    <toastr></toastr>
+    <modal></modal>
   </div>
 </template>
 
 <script>
-{{#unless router}}
-import Hello from './components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Toastr from '@/components/Toastr'
+import Modal from '@/components/Modal'
 
-{{/unless}}
 export default {
-  name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
+  name: 'app',
   components: {
-    Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
-}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+    Toastr,
+    Modal
+  }
+}
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+@import '~animate.css/animate.css';
+@import '~bootstrap/less/bootstrap.less';
+@import './theme/default.less';
 </style>
